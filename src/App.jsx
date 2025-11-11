@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Profile from './pages/Profile';
@@ -9,6 +9,7 @@ import './App.css';
 import ProtectedRoute from "./components/ProtectedRoute";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {AuthContext} from "./contexts/AuthContext";
 
 function App() {
     return (
@@ -18,7 +19,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route
-                        path="/profile"
+                        path="/profile/"
                         element={
                             <ProtectedRoute>
                                 <Profile/>

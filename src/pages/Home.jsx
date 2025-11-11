@@ -5,7 +5,7 @@ import {toast} from "react-toastify";
 
 function Home() {
 
-    const {isAuth} = useContext(AuthContext);
+    const {authState} = useContext(AuthContext);
 
     return (
         <>
@@ -44,7 +44,7 @@ function Home() {
             </section>
             <section>
                 <p>Als je ingelogd bent, bekijk dan de&nbsp;
-                    {isAuth ? (
+                    {authState.isAuth ? (
                         <Link to="/profile">Profielpagina</Link>
                     ) : (
                         <Link to="/profile"

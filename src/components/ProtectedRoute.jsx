@@ -4,9 +4,9 @@ import {Navigate} from "react-router-dom";
 
 function ProtectedRoute({children}) {
 
-    const {isAuth} = useContext(AuthContext);
+    const {authState} = useContext(AuthContext);
 
-    if (!isAuth) {
+    if (!authState.isAuth) {
         return <Navigate to="/" />;
     }
 

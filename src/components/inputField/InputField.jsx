@@ -12,9 +12,7 @@ function InputField({label, name, value, onChange}) {
                    name={name}
                    value={value}
                    onChange={onChange}
-
-            >
-            </input>
+            />
         </label>
     )
 }
