@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import {AuthContext} from '../contexts/authContext';
+import InputField from "../components/inputField/InputField";
 
 function SignIn() {
 
@@ -13,7 +14,8 @@ function SignIn() {
                 molestias qui quo unde?</p>
 
             <form onSubmit={login}>
-                <p>*invoervelden*</p>
+                <InputField label="Gebruikersnaam" name="username"/>
+                <InputField label="Wachtwoord" name="password"/>
                 <button type="submit">
                     Inloggen
                 </button>
