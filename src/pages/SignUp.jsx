@@ -1,19 +1,33 @@
 import React, {useContext, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import InputField from "../components/inputField/InputField";
-import {AuthContext} from "../contexts/AuthContext";
+import axios from "axios";
 
 function SignUp() {
-
-    const {signup} = useContext(AuthContext);
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        signup(username, email);
+
+        async function createUser(email, password, username) {
+            const response = await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/users',
+                {
+                    email: email,
+                    password: password,
+                    username: username,
+                },
+                 {
+                    'novi-education-project-id': 'dba8566a-9dd8-4a2a-b717-eaaae3e286b4'
+                }
+            );
+        }
+
+        console.log("Gebruiker is geregistreerd!");
+        navigate("/signin/");
     }
 
     return (

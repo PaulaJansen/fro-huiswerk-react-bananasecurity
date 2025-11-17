@@ -2,16 +2,35 @@ import React, {useContext, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {AuthContext} from '../contexts/authContext';
 import InputField from "../components/inputField/InputField";
+import axios from "axios";
+import {toast} from "react-toastify";
 
 function SignIn() {
 
     const {login} = useContext(AuthContext);
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
-    const handleSubmit = (e) => {
+    async function handleSubmit(e) {
         e.preventDefault();
-        login(username);
+        try {
+            const response = await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/login',
+                {
+                    email: email,
+                    password: password,
+                },
+                {
+                    headers: {
+                        'novi-education-project-id': 'dba8566a-9dd8-4a2a-b717-eaaae3e286b4'
+                    }
+                });
+
+            login(response.data);
+        } catch (e) {
+            setError("Login mislukt, probeer opnieuw!");
+            toast.error(error);
+        }
     }
 
     return (
@@ -22,9 +41,9 @@ function SignIn() {
 
             <form onSubmit={handleSubmit}>
                 <InputField label="Gebruikersnaam"
-                            name="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                 />
                 <InputField label="Wachtwoord"
                             name="password"
