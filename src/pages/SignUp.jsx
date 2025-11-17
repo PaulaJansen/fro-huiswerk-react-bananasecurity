@@ -10,11 +10,11 @@ function SignUp() {
     const [email, setEmail] = useState("");
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    async function handleSubmit (e) {
         e.preventDefault();
 
-        async function createUser(email, password, username) {
-            const response = await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/users',
+        try {
+            await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/users',
                 {
                     email: email,
                     password: password,
@@ -24,10 +24,11 @@ function SignUp() {
                     'novi-education-project-id': 'dba8566a-9dd8-4a2a-b717-eaaae3e286b4'
                 }
             );
+            console.log("Gebruiker is geregistreerd!");
+            navigate("/signin/");
+        } catch (e) {
+            console.error("Neeeeee");
         }
-
-        console.log("Gebruiker is geregistreerd!");
-        navigate("/signin/");
     }
 
     return (
@@ -40,16 +41,19 @@ function SignUp() {
                 doloremque ea eveniet facere fuga illum in numquam quia reiciendis rem sequi tenetur veniam?</p>
             <form onSubmit={handleSubmit}>
                 <InputField label="Emailadres"
+                            id="email-field"
                             name="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                 />
                 <InputField label="Gebruikersnaam"
+                            id="username-field"
                             name="username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                 />
                 <InputField label="Wachtwoord"
+                            id="password-field"
                             name="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}

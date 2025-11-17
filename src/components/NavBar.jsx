@@ -2,10 +2,11 @@ import React, {useContext} from 'react';
 import logo from '../assets/banana-01.png';
 import {useNavigate, Link} from 'react-router-dom';
 import {AuthContext} from '../contexts/AuthContext';
+import emailToName from "../helpers/emailToName";
 
 function NavBar() {
     const navigate = useNavigate();
-    const {authState, logout} = useContext(AuthContext);
+    const {auth, logout} = useContext(AuthContext);
 
     return (
         <nav>
@@ -19,12 +20,12 @@ function NavBar() {
             </Link>
 
             <div>
-                {authState.isAuth ? (
+                {auth.isAuth ? (
                     <>
                         <button type="button"
                                 onClick={() => navigate("/profile/")}
                         >
-                            {authState.user.username}
+                            {emailToName(auth.user.email)}
                         </button>
                         <button
                             type="button"

@@ -28,8 +28,7 @@ function SignIn() {
 
             login(response.data);
         } catch (e) {
-            setError("Login mislukt, probeer opnieuw!");
-            toast.error(error);
+            toast.error("Login mislukt, probeer opnieuw!");
         }
     }
 
@@ -40,12 +39,14 @@ function SignIn() {
                 molestias qui quo unde?</p>
 
             <form onSubmit={handleSubmit}>
-                <InputField label="Gebruikersnaam"
+                <InputField label="E-mailadres"
+                            id="emailfield"
                             name="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                 />
                 <InputField label="Wachtwoord"
+                            id="password-field"
                             name="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}

@@ -1,8 +1,6 @@
 import './InputField.css';
 
-function InputField({label, name, value, onChange}) {
-
-    const id = name;
+function InputField({label, id, name, value, onChange}) {
 
     return (
         <label htmlFor={id}>
